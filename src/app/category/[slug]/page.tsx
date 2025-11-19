@@ -181,7 +181,7 @@ export default function CategoryPage({
                   {/* Image Section */}
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={article.image}
+                      src={article.image || '/placeholder-news.svg'}
                       alt={article.news_Title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"

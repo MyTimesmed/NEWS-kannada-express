@@ -141,16 +141,14 @@ export default async function BlogDetail({
           {/* Article Header */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             {/* Featured Image */}
-            {blog.image && (
-              <div className="relative h-64 md:h-96 w-full overflow-hidden">
+            {(blog.image || blog.blog_Image) && (
+              <div className="relative h-64 md:h-96 w-full overflow-hidden bg-gray-100">
                 <Image
-                  src={blog.image}
+                  src={blog.image || blog.blog_Image || '/placeholder-news.svg'}
                   alt={blog.blog_Title || blog.news_Title || "Blog image"}
                   fill
-                  className="object-cover"
-                  priority
+                  className="object-cover hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
               </div>
             )}
 

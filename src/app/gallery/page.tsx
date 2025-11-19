@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 function normalizeUrl(url?: string) {
   if (!url) return null;
@@ -8,18 +11,45 @@ function normalizeUrl(url?: string) {
   return url;
 }
 
-async function fetchData() {
-  const res = await fetch(
-    "https://newsapi.timesmed.com/WebAPI/getnewslist?siteId=31&language=Kannada",
-    { next: { revalidate: 300 } }
-  );
-  if (!res.ok) throw new Error("Failed to fetch gallery data");
-  return res.json();
-}
+export default function Page() {
+  const [galleries, setGalleries] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default async function Page() {
-  const json = await fetchData();
-  const galleries = json?.data?.galleries || [];
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch("/api/news", { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch gallery data");
+        const json = await res.json();
+        setGalleries(json?.data?.galleries || []);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="max-w-7xl mx-auto px-4 py-8">
+        <h1 className="text-2xl font-semibold mb-6">ಗ್ಯಾಲರಿ</h1>
+        <div className="text-center py-12">Loading gallery...</div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="max-w-7xl mx-auto px-4 py-8">
+        <h1 className="text-2xl font-semibold mb-6">ಗ್ಯಾಲರಿ</h1>
+        <div className="text-center py-12 text-red-600">Error: {error}</div>
+      </section>
+    );
+  }
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">

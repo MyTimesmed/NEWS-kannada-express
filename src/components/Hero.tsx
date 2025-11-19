@@ -89,7 +89,7 @@ export default function Hero() {
                 >
                   <div className="relative h-full overflow-hidden">
                     <Image
-                      src={item.image}
+                      src={item.image || '/placeholder-news.svg'}
                       alt={item.news_Title}
                       fill
                       className="object-cover transform group-hover:scale-110 transition-transform duration-700"
@@ -141,7 +141,7 @@ export default function Hero() {
                 <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={item.image}
+                      src={item.image || '/placeholder-news.svg'}
                       alt={item.news_Title}
                       fill
                       className="object-cover transform group-hover:scale-110 transition-transform duration-500"
@@ -179,7 +179,7 @@ export default function Hero() {
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
-                    src={item.image}
+                    src={item.image || '/placeholder-news.svg'}
                     alt={item.news_Title}
                     fill
                     className="object-cover transform group-hover:scale-110 transition-transform duration-500"
@@ -218,7 +218,7 @@ export default function Hero() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="relative h-64 md:h-auto overflow-hidden">
                     <Image
-                      src={news[7].image}
+                      src={news[7].image || '/placeholder-news.svg'}
                       alt={news[7].news_Title}
                       fill
                       className="object-cover transform group-hover:scale-110 transition-transform duration-500"

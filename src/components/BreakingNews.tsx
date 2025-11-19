@@ -69,7 +69,7 @@ export default function BreakingNews() {
             >
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src={news.image}
+                  src={news.image || '/placeholder-news.svg'}
                   alt={news.news_Title}
                   fill
                   className="object-cover transform group-hover:scale-110 transition-transform duration-500"
@@ -79,13 +79,7 @@ export default function BreakingNews() {
                     {news.categrory_Name}
                   </span>
                 </div>
-                <div className="absolute top-3 right-3">
-                  <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">
-                      {index + 1}
-                    </span>
-                  </div>
-                </div>
+
               </div>
               <div className="p-4">
                 <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-orange-600 transition-colors duration-200">

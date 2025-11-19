@@ -48,38 +48,20 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="justify-self-center hidden md:flex space-x-8">
-            {/* Categories Dropdown */}
-            <div className="relative category-dropdown">
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          <div className="justify-self-center hidden md:flex space-x-6">
+            {/* Show categories horizontally on desktop */}
+            {categories.slice(0, 3).map((category) => (
+              <Link
+                key={category}
+                href={`/category/${slugifyCategory(category)}`}
                 className={cn(
-                  "font-medium text-base whitespace-nowrap transition-colors duration-200 flex items-center",
+                  "font-medium text-base whitespace-nowrap transition-colors duration-200",
                   "text-black hover:text-orange-600"
                 )}
               >
-                ವಿಭಾಗಗಳು
-                <ChevronDown className={cn(
-                  "ml-1 h-4 w-4 transition-transform duration-200",
-                  isDropdownOpen ? "rotate-180" : ""
-                )} />
-              </button>
-              
-              {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50">
-                  {categories.slice(0, 3).map((category) => (
-                    <Link
-                      key={category}
-                      href={`/category/${slugifyCategory(category)}`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200"
-                      onClick={() => setIsDropdownOpen(false)}
-                    >
-                      {category}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+                {category}
+              </Link>
+            ))}
             
             <Link
               href="/gallery"
@@ -128,19 +110,40 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div className="flex flex-col space-y-3 py-4 border-t border-orange-200">
             <div className="md:hidden">
-              {/* Mobile Categories */}
+              {/* Mobile Categories with Dropdown */}
               <div className="mb-4">
-                <h3 className="font-medium text-gray-800 mb-2 px-2">ವಿಭಾಗಗಳು</h3>
-                {categories.slice(0, 3).map((category) => (
-                  <Link
-                    key={category}
-                    href={`/category/${slugifyCategory(category)}`}
-                    className="font-medium text-base text-black hover:text-orange-600 transition-colors duration-200 py-1 pl-4 block"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                <div className="relative category-dropdown">
+                  <button
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className={cn(
+                      "font-medium text-lg text-black hover:text-orange-600 transition-colors duration-200 flex items-center w-full py-2",
+                    )}
                   >
-                    {category}
-                  </Link>
-                ))}
+                    ವಿಭಾಗಗಳು
+                    <ChevronDown className={cn(
+                      "ml-1 h-4 w-4 transition-transform duration-200",
+                      isDropdownOpen ? "rotate-180" : ""
+                    )} />
+                  </button>
+                  
+                  {isDropdownOpen && (
+                    <div className="mt-2 pl-4 space-y-2">
+                      {categories.slice(0, 3).map((category) => (
+                        <Link
+                          key={category}
+                          href={`/category/${slugifyCategory(category)}`}
+                          className="font-medium text-base text-black hover:text-orange-600 transition-colors duration-200 py-1 block"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          {category}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
               
               <Link

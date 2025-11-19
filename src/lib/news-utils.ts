@@ -15,22 +15,33 @@ export function formatDate(iso: string) {
 const categorySlugMap: Record<string, string> = {
   "ಸಾಮಾನ್ಯ": "general",
   "ರಾಜಕೀಯ": "politics",
-  "ಕ್ರೀಡೆ": "sports", 
+  "ಕ್ರೀಡೆ": "sports",
   "ಮನರಂಜನೆ": "entertainment",
   "ತಂತ್ರಜ್ಞಾನ": "technology",
+  "ಟೆಕ್ನಾಲಜಿ": "technology",
+  "Technology": "technology",
+  "Techology": "technology", // Fix typo
   "ಆರೋಗ್ಯ": "health",
   "ವ್ಯಾಪಾರ": "business",
   "ಶಿಕ್ಷಣ": "education",
   "ಸುದ್ದಿ": "news",
   "ರಾಷ್ಟ್ರೀಯ": "national",
   "ಅಂತರರಾಷ್ಟ್ರೀಯ": "international",
+  "ದೇಶ-ವಿದೇಶ": "national-international",
   "ರಾಜ್ಯ": "state",
   "ಜಿಲ್ಲೆ": "district",
   "ಬೆಂಗಳೂರು": "bangalore",
   "ಮೈಸೂರು": "mysore",
   "ಹುಬ್ಬಳ್ಳಿ": "hubballi",
   "ಮಂಗಳೂರು": "mangalore",
-  "ಬೆಳಗಾವಿ": "belagavi"
+  "ಬೆಳಗಾವಿ": "belagavi",
+  "ವೀಡಿಯೊ": "video",
+  "Video": "video",
+  "ಗ್ಯಾಲರಿ": "gallery",
+  "Gallery": "gallery",
+  "ಬ್ಲಾಗ್": "blog",
+  "Blog": "blog",
+  "ಜೀವನ ಶೈಲಿ": "lifestyle"
 };
 
 export function slugifyCategory(name: string) {
