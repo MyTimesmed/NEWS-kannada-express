@@ -221,7 +221,7 @@ export default function CategoryPage({
                         href={`/news/${encodeURIComponent(article.slug)}`}
                         className="text-orange-600 hover:text-orange-800 text-xs font-semibold transition-colors duration-200 flex items-center"
                       >
-                        Read
+                        ಓದಿ
                         <svg
                           className="ml-1 w-3 h-3"
                           fill="none"
